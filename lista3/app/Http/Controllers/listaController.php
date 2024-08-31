@@ -37,8 +37,7 @@ class listaController extends Controller
 
     public function calcularExerc4(Request $request){
         $valor1 = (int)$request->input('valor1');
-        $valor2 = (int)$request->input('valor2');
-        $valor2 != 0;
+        $valor2 = (int)$request->input('valor2') == 0 ? 1 : (int)$request->input('valor2') ; 
         return $valor1/$valor2;
     }
 
