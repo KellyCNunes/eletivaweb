@@ -1,21 +1,21 @@
 <?php
 abstract class Celular {
 
-    protected $custoPorMinutoBase;
+    protected $custoMinutoBase;
     protected $nomeOperadora;
 
-public function __construct($ddd, $numero, $custoPorMinutoBase, $nomeOperadora) {
+public function __construct($ddd, $numero, $custoMinutoBase, $nomeOperadora) {
     __construct($ddd, $numero);
-    $this->custoPorMinutoBase = $custoPorMinutoBase;
+    $this->custoMinutoBase = $custoMinutoBase;
     $this->nomeOperadora = $nomeOperadora;
 }
 
-public function getCustoPorMinutoBase() {
-    return $this->custoPorMinutoBase;
+public function getCustoMinutoBase() {
+    return $this->custoMinutoBase;
 }
 
-public function setCustoPorMinutoBase($custoPorMinutoBase) {
-    $this->custoPorMinutoBase = $custoPorMinutoBase;
+public function setCustoMinutoBase($custoMinutoBase) {
+    $this->custoMinutoBase = $custoMinutoBase;
 }
 
 public function getNomeOperadora() {
@@ -28,34 +28,34 @@ public function setNomeOperadora($nomeOperadora) {
 }
 class Fixo  {
 
-    private $custoPorMinuto;
+    private $custoMinuto;
 
-    public function __construct($ddd, $numero, $custoPorMinuto) {
+    public function __construct($ddd, $numero, $custoMinuto) {
         __construct($ddd, $numero);
-        $this->custoPorMinuto = $custoPorMinuto;
+        $this->custoMinuto = $custoMinuto;
     }
 
-    public function getCustoPorMinuto() {
-        return $this->custoPorMinuto;
+    public function getCustoMinuto() {
+        return $this->custoMinuto;
     }
 
-    public function setCustoPorMinuto($custoPorMinuto) {
-        $this->custoPorMinuto = $custoPorMinuto;
+    public function setCustoMinuto($custoMinuto) {
+        $this->custoMinuto = $custoMinuto;
     }
 
     public function calculaCusto($tempo) {
-        return $tempo * $this->custoPorMinuto;
+        return $tempo * $this->custoMinuto;
     }
 }
 
 class PosPago{
 
-    public function __construct($ddd, $numero, $custoPorMinutoBase, $nomeOperadora) {
-        __construct($ddd, $numero, $custoPorMinutoBase, $nomeOperadora);
+    public function __construct($ddd, $numero, $custoMinutoBase, $nomeOperadora) {
+        __construct($ddd, $numero, $custoMinutoBase, $nomeOperadora);
     }
 
     public function calculaCusto($tempo) {
-        $custoFinal = $this->custoPorMinutoBase * 0.9;
+        $custoFinal = $this->custoMinutoBase * 0.9;
         return $tempo * $custoFinal;
     }
 }
@@ -63,12 +63,12 @@ class PosPago{
 
 class PrePago {
 
-    public function __construct($ddd, $numero, $custoPorMinutoBase, $nomeOperadora) {
-        __construct($ddd, $numero, $custoPorMinutoBase, $nomeOperadora);
+    public function __construct($ddd, $numero, $custoMinutoBase, $nomeOperadora) {
+        __construct($ddd, $numero, $custoMinutoBase, $nomeOperadora);
     }
 
     public function calculaCusto($tempo) {
-        $custoFinal = $this->custoPorMinutoBase * 1.4;
+        $custoFinal = $this->custoMinutoBase * 1.4;
         return $tempo * $custoFinal;
     }
 }
@@ -105,10 +105,10 @@ abstract class Telefone {
 $telefoneFixo = new Fixo('18', '1234-5678', 0.50);
 echo "Custo da ligação fixa: R$" . $telefoneFixo->calculaCusto(10) . "<br>";
 
-$telefonePrePago = new PrePago('18', '111111222', 0.30, 'Operadora X');
+$telefonePrePago = new PrePago('18', '12345678', 0.30, 'Operadora A');
 echo "Custo da ligação pré-paga: R$" . $telefonePrePago->calculaCusto(10) . "<br>";
 
-$telefonePosPago = new PosPago('18', '222222111', 0.30, 'Operadora Y');
+$telefonePosPago = new PosPago('18', '12345678', 0.30, 'Operadora B');
 echo "Custo da ligação pós-paga: R$" . $telefonePosPago->calculaCusto(10) . "<br>";
 
 ?>
