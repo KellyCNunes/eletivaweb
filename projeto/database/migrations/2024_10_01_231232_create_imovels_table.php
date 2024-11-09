@@ -19,13 +19,41 @@ return new class extends Migration
             $table->string('tipo'); // Casa, apartamento, etc.
             $table->timestamps();
         });
+
+        Schema::create('proprietarios', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->string('telefone');
+            $table->string('email')->unique();
+            $table->timestamps();
+        });
+
+        Schema::create('locatarios', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->string('telefone');
+            $table->string('email')->unique();
+            $table->timestamps();
+        });
+
+        Schema::create('contratos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('imovel_id')->constrained()->onDelete('cascade');
+            $table->foreignId('proprietario_id')->constrained('proprietarios')->onDelete('cascade');
+            $table->foreignId('locatario_id')->constrained('locatarios')->onDelete('cascade');
+            $table->date('data_inicio');
+            $table->date('data_fim');
+            $table->timestamps();
+        });
+        
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
+
     public function down(): void
     {
         Schema::dropIfExists('imovels');
+        Schema::dropIfExists('proprietarios');
+        Schema::dropIfExists('locatarios');
     }
 };

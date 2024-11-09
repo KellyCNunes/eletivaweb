@@ -19,6 +19,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('categoria', CategoriaController::class);
     Route::resource('imovel', ImovelController::class);
+    Route::resource('proprietarios', ProprietarioController::class);
+    Route::resource('locatarios', LocatarioController::class);
+
+
 });
 
 require __DIR__.'/auth.php';
