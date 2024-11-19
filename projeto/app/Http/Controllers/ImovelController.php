@@ -2,66 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Imovel;
+use Illuminate\Http\Request;
 
 class ImovelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $imoveis = Imovel::all();
         return view('imovel.index', compact('imoveis'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         return view('imovel.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
         Imovel::create($request->all());
-        return redirect("/imovel");
+        return redirect()->route('imovel.index')->with('success', 'Imóvel cadastrado com sucesso.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+   
+    public function show(int $id)
     {
-        //
+        $imovel = Imovel::findOrFail($id);
+        return view('imovel.show', compact('imovel'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    
+    public function edit(int $id)
     {
-        //
+        $imovel = Imovel::findOrFail($id);
+        return view('imovel.edit', compact('imovel'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $imovel = Imovel::findOrFail($id);
+        $imovel->update($request->all());
+        return redirect()->route('imovel.index')->with('success', 'Imóvel atualizado com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    
+    public function destroy(int $id)
     {
-        //
+        $imovel = Imovel::findOrFail($id);
+        $imovel->delete();
+        return redirect()->route('imovel.index')->with('success', 'Imóvel excluído com sucesso.');
     }
 }
+

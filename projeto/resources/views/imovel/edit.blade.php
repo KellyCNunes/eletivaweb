@@ -2,7 +2,7 @@
 
     <h5>Alterar Imóvel</h5>
 
-    <form action="/imovel/" method="POST">
+    <form action="/imovel/{{$imovel->id}}" method="POST">
         @CSRF
         @method('PUT')
         <div class="row">

@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('imovel', ImovelController::class);
     Route::resource('proprietarios', ProprietarioController::class);
     Route::resource('locatarios', LocatarioController::class);
+    Route::resource('contratos', ContratoController::class);
+
 
 
 });
