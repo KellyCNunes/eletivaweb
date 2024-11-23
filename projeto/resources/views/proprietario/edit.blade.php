@@ -2,21 +2,21 @@
 
     <h5>Alterar Proprietario</h5>
 
-    <form action="/proprietario/" method="POST">
+    <form action="/proprietario/{{$proprietario->id}}" method="POST">
         @CSRF
         @method('PUT')
         <div class="row">
         <div class="col">
             <label for="nome" class="form-label">Informe o nome do proprietário:</label>
-                <input type="text" name="nome" class="form-control"/>
+                <input type="text" name="nome" class="form-control" value="{{$proprietario->nome}}"/>
             </div>
             <div class="col">
                 <label for="telefone" class="form-label">Informe o telefone:</label>
-                <input type="text" name="telefone" class="form-control"/>
+                <input type="text" name="telefone" class="form-control" value="{{$proprietario->telefone}}"/>
             </div>
             <div class="col">
                 <label for="email" class="form-label">Informe o email:</label>
-                <input type="text" name="email" class="form-control"/>
+                <input type="text" name="email" class="form-control" value="{{$proprietario->email}}"/>
             </div>
         <div class="row">
             <div class="col">

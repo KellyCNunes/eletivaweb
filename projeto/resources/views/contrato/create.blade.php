@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Cadastrar Novo Contrato</h1>
-    <form action="{{ route('contratos.store') }}" method="POST">
+    <form action="{{ route('contrato.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="imovel_id">Imóvel</label>

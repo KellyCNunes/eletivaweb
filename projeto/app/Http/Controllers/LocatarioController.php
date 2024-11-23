@@ -9,52 +9,44 @@ class LocatarioController extends Controller
 {
     public function index()
     {
-        $locatarios = Locatario::all();
-        return view('locatarios.index', compact('locatarios'));
+        $locatario = Locatario::all();
+        return view('locatario.index', compact('locatario'));
     }
 
     public function create()
     {
-        return view('locatarios.create');
+        return view('locatario.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'telefone' => 'required',
-            'email' => 'required|email|unique:locatarios'
-        ]);
-
         Locatario::create($request->all());
-        return redirect()->route('locatarios.index')->with('success', 'Locatário cadastrado com sucesso.');
+        return redirect()->route('locatario.index')->with('success', 'Locatário cadastrado com sucesso.');
     }
 
-    public function show(Locatario $locatario)
+    public function show(int $id)
     {
-        return view('locatarios.show', compact('locatario'));
+        $locatario = Locatario::findOrFail($id);
+        return view('locatario.show', compact('locatario'));
     }
 
-    public function edit(Locatario $locatario)
+    public function edit(int $id)
     {
-        return view('locatarios.edit', compact('locatario'));
+        $locatario = Locatario::findOrFail($id);
+        return view('locatario.edit', compact('locatario'));
     }
 
-    public function update(Request $request, Locatario $locatario)
+    public function update(Request $request, int $id)
     {
-        $request->validate([
-            'nome' => 'required',
-            'telefone' => 'required',
-            'email' => 'required|email|unique:locatarios,email,' . $locatario->id
-        ]);
-
+        $locatario = Locatario::findOrFail($id);
         $locatario->update($request->all());
-        return redirect()->route('locatarios.index')->with('success', 'Locatário atualizado com sucesso.');
+        return redirect()->route('locatario.index')->with('success', 'Locatário atualizado com sucesso.');
     }
 
-    public function destroy(Locatario $locatario)
+    public function destroy(int $id)
     {
+        $locatario = Locatario::findOrFail($id);
         $locatario->delete();
-        return redirect()->route('locatarios.index')->with('success', 'Locatário excluído com sucesso.');
+        return redirect()->route('locatario.index')->with('success', 'Locatário excluído com sucesso.');
     }
 }

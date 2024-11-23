@@ -12,16 +12,16 @@ class ContratoController extends Controller
 {
     public function index()
     {
-        $contratos = Contrato::all();
-        return view('contratos.index', compact('contratos'));
+        $contrato = Contrato::all();
+        return view('contrato.index', compact('contrato'));
     }
 
     public function create()
     {
-        $imoveis = Imovel::all();
-        $proprietarios = Proprietario::all();
-        $locatarios = Locatario::all();
-        return view('contratos.create', compact('imoveis', 'proprietarios', 'locatarios'));
+        $imovel = Imovel::all();
+        $proprietario = Proprietario::all();
+        $locatario = Locatario::all();
+        return view('contrato.create', compact('imovei', 'proprietario', 'locatario'));
     }
 
     public function store(Request $request)
@@ -35,39 +35,35 @@ class ContratoController extends Controller
         ]);
 
         Contrato::create($request->all());
-        return redirect()->route('contratos.index')->with('success', 'Contrato registrado com sucesso.');
+        return redirect()->route('contrato.index')->with('success', 'Contrato registrado com sucesso.');
     }
 
-    public function show(Contrato $contrato)
+    public function show(int $id)
     {
-        return view('contratos.show', compact('contrato'));
+        $contrato = Contrato::findOrFail($id);
+        return view('contrato.show', compact('contrato'));
     }
 
-    public function edit(Contrato $contrato)
+    public function edit(int $id)
     {
-        $imoveis = Imovel::all();
-        $proprietarios = Proprietario::all();
-        $locatarios = Locatario::all();
-        return view('contratos.edit', compact('contrato', 'imoveis', 'proprietarios', 'locatarios'));
+        $contrato = Contrato::findOrFail($id);
+        $imovel = Imovel::all();
+        $proprietario = Proprietario::all();
+        $locatario = Locatario::all();
+        return view('contrato.edit', compact('contrato', 'imovei', 'proprietario', 'locatario'));
     }
 
-    public function update(Request $request, Contrato $contrato)
+    public function update(Request $request, int $id)
     {
-        $request->validate([
-            'imovel_id' => 'required|exists:imoveis,id',
-            'proprietario_id' => 'required|exists:proprietarios,id',
-            'locatario_id' => 'required|exists:locatarios,id',
-            'data_inicio' => 'required|date',
-            'data_fim' => 'required|date|after:data_inicio'
-        ]);
-
+        $contrato = Contrato::findOrFail($id);
         $contrato->update($request->all());
-        return redirect()->route('contratos.index')->with('success', 'Contrato atualizado com sucesso.');
+        return redirect()->route('contrato.index')->with('success', 'Contrato atualizado com sucesso.');
     }
 
-    public function destroy(Contrato $contrato)
+    public function destroy(int $id)
     {
+        $contrato = Contrato::findOrFail($id);
         $contrato->delete();
-        return redirect()->route('contratos.index')->with('success', 'Contrato excluído com sucesso.');
+        return redirect()->route('contrato.index')->with('success', 'Contrato excluído com sucesso.');
     }
 }

@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ImovelController;
+use App\Http\Controllers\ProprietarioController;
+use App\Http\Controllers\LocatarioController;
+use App\Http\Controllers\ContratoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,13 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('categoria', CategoriaController::class);
     Route::resource('imovel', ImovelController::class);
-    Route::resource('proprietarios', ProprietarioController::class);
-    Route::resource('locatarios', LocatarioController::class);
-    Route::resource('contratos', ContratoController::class);
-
-
+    Route::resource('proprietario', ProprietarioController::class);
+    Route::resource('locatario', LocatarioController::class);
+    Route::resource('contrato', ContratoController::class);
 
 });
 

@@ -15,7 +15,7 @@
             </div>
             <div class="col">
                 <label for="email" class="form-label">Informe o email:</label>
-                <input type="number" name="email" class="form-control"/>
+                <input type="text" name="email" class="form-control"/>
             </div>
             
         <div class="row">

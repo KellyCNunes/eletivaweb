@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($imoveis as $c)
+            @foreach($locatario as $c)
             <tr>
                 <td>{{ $c->nome }}</td>
                 <td>
