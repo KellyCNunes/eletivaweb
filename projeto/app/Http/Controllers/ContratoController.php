@@ -21,15 +21,15 @@ class ContratoController extends Controller
         $imovel = Imovel::all();
         $proprietario = Proprietario::all();
         $locatario = Locatario::all();
-        return view('contrato.create', compact('imovei', 'proprietario', 'locatario'));
+        return view('contrato.create', compact('imovel', 'proprietario', 'locatario'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'imovel_id' => 'required|exists:imoveis,id',
-            'proprietario_id' => 'required|exists:proprietarios,id',
-            'locatario_id' => 'required|exists:locatarios,id',
+            'imovel_id' => 'required|exists:imovel,id',
+            'proprietario_id' => 'required|exists:proprietario,id',
+            'locatario_id' => 'required|exists:locatario,id',
             'data_inicio' => 'required|date',
             'data_fim' => 'required|date|after:data_inicio'
         ]);

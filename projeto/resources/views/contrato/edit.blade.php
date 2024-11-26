@@ -1,9 +1,8 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
 <div class="container">
     <h1>Editar Contrato</h1>
-    <form action="{{ route('contratos.update', $contrato->id) }}" method="POST">
+    <form action="{{ route('contrato.update', $contrato->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -48,4 +47,4 @@
         <a href="{{ route('contratos.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
-@endsection
+</x-app-layout>

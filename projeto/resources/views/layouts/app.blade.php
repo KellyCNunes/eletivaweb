@@ -77,7 +77,7 @@
 </nav>
 
 <div class="container content my-5">
-    {{$slot}}
+        {{$slot}}
 </div>
 
 <footer>

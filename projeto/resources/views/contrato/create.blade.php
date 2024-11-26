@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 <div class="container">
     <h1>Cadastrar Novo Contrato</h1>
     <form action="{{ route('contrato.store') }}" method="POST">
@@ -8,7 +6,7 @@
         <div class="form-group">
             <label for="imovel_id">Imóvel</label>
             <select name="imovel_id" id="imovel_id" class="form-control" required>
-                @foreach($imoveis as $imovel)
+                @foreach($imovel as $imovel)
                 <option value="{{ $imovel->id }}">{{ $imovel->nome }}</option>
                 @endforeach
             </select>
@@ -16,7 +14,7 @@
         <div class="form-group">
             <label for="proprietario_id">Proprietário</label>
             <select name="proprietario_id" id="proprietario_id" class="form-control" required>
-                @foreach($proprietarios as $proprietario)
+                @foreach($proprietario as $proprietario)
                 <option value="{{ $proprietario->id }}">{{ $proprietario->nome }}</option>
                 @endforeach
             </select>
@@ -24,7 +22,7 @@
         <div class="form-group">
             <label for="locatario_id">Locatário</label>
             <select name="locatario_id" id="locatario_id" class="form-control" required>
-                @foreach($locatarios as $locatario)
+                @foreach($locatario as $locatario)
                 <option value="{{ $locatario->id }}">{{ $locatario->nome }}</option>
                 @endforeach
             </select>
@@ -40,4 +38,4 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 </div>
-@endsection
+</x-app-layout>
